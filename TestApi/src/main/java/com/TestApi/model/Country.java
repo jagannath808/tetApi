@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 @Entity
 public class Country {
 	@Id
@@ -24,7 +26,7 @@ public class Country {
 	 @OneToMany(cascade = CascadeType.ALL,
 	            fetch = FetchType.LAZY,
 	            mappedBy = "country")
-	    private Set<State> setState = new HashSet<>();
+	    private Set<State> state = new HashSet<>();
 	 
 	 public Country() {
 		 
@@ -43,16 +45,16 @@ public class Country {
 		this.name = name;
 	}
 	
-	public Set<State> getSetState() {
-		return setState;
+	public Set<State> getstate() {
+		return state;
 	}
 
-	public void setSetState(Set<State> setState) {
-		this.setState = setState;
+	public void setState(Set<State> setState) {
+		this.state = setState;
 	}
       
 	@Override
 	public String toString() {
-		return "Country [id=" + id + ", name=" + name + ", setState=" + setState + "]";
+		return "Country [id=" + id + ", name=" + name + ", state=" + state + "]";
 	}
 }

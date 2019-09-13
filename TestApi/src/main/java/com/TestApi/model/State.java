@@ -1,5 +1,9 @@
 package com.TestApi.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class State {
@@ -17,9 +27,24 @@ public class State {
 	private int id;
 	@Column(name="name")
 	private String name;
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "countryid")
+	@Autowired
     private Country country;
+	 @OneToMany(cascade = CascadeType.ALL,
+	            fetch = FetchType.LAZY,
+	            mappedBy = "state")
+	  private Set<Employee> employees = new HashSet<>();
+	public Set<Employee> getEmployees() {
+		return employees;
+	}
+	public void setEmployees(Set<Employee> employees) {
+		this.employees = employees;
+	}
+	public State() {
+		
+	}
 	public State(String state_name) {
         this.name = state_name;
     }
@@ -43,7 +68,7 @@ public class State {
 	}
 	@Override
 	public String toString() {
-		return "State [id=" + id + ", name=" + name + ", country=" + country + "]";
+		return "State [id=" + id + ", name=" + name + ", country=" + country + ", employees=" + employees + "]";
 	}
 	
 	

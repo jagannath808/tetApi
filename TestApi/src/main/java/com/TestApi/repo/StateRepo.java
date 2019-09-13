@@ -8,6 +8,6 @@ import com.TestApi.model.State;
 
 
 
-public interface StateRepo extends JpaRepository<State,Integer> {
-	List<State> findAllByCountry(int id);
+public interface StateRepo extends JpaRepository<State,Integer>  {
+	//List<State> findAllByCountry(int id);
 }

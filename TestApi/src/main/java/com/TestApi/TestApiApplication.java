@@ -10,26 +10,11 @@ import com.TestApi.repo.CountryRepo;
 import com.TestApi.repo.StateRepo;
 
 @SpringBootApplication
-public class TestApiApplication  implements CommandLineRunner{
-
-	@Autowired
-	CountryRepo countryRepo;
-	
-	@Autowired
-	StateRepo stateRepo;
+public class TestApiApplication {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(TestApiApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
-		
-		System.out.println(stateRepo.findAllByCountry(1));
-		
-		//(countryRepo.findIdByName("IND")));
-		
-	}
 
 }
